@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { CrmGuest, CrmGuestBooking } from '@/domain/entities/crm-guest.model';
+import { CrmGuest, CrmGuestBooking, CrmGuestStatus } from '@/domain/entities/crm-guest.model';
 import { GetCrmGuestBookingsUseCase } from '@/domain/use-cases/crm/get-crm-guest-bookings.use-case';
 import { GetCrmGuestsUseCase } from '@/domain/use-cases/crm/get-crm-guests.use-case';
 import { HotelPageLayoutComponent } from '@/presentation/features/hotel/components/hotel-page-layout/hotel-page-layout';
@@ -77,21 +77,37 @@ export class GuestsCrmComponent implements OnInit {
     value: option.key,
     label: option.label,
   }));
+  readonly statusSelectOptions: SelectOption[] = [
+    { value: 'all', label: 'Todos los estados' },
+    { value: 'active', label: 'Activo' },
+    { value: 'blocked', label: 'Bloqueado' },
+    { value: 'archived', label: 'Archivado' },
+  ];
 
   readonly guests = signal<CrmGuest[]>([]);
+  readonly statusFilter = signal<CrmGuestStatus | 'all'>('all');
+  readonly activeTags = signal<string[]>([]);
 
   ngOnInit(): void {
     this.loadGuests();
   }
 
+  readonly availableTags = computed(() =>
+    [...new Set(this.guests().flatMap((g) => g.tags ?? []).filter((t) => t.trim()))].sort(),
+  );
+
   readonly filteredGuests = computed(() => {
     const term = this.searchTerm().trim().toLowerCase();
     const field = this.searchField();
-    if (!term) {
-      return this.guests();
-    }
+    const status = this.statusFilter();
+    const tags = this.activeTags();
 
-    return this.guests().filter((guest) => guest[field].toLowerCase().includes(term));
+    return this.guests().filter((guest) => {
+      if (term && !guest[field].toLowerCase().includes(term)) return false;
+      if (status !== 'all' && guest.status !== status) return false;
+      if (tags.length > 0 && !tags.every((tag) => guest.tags?.includes(tag))) return false;
+      return true;
+    });
   });
 
   readonly totalPages = computed(() =>
@@ -131,6 +147,26 @@ export class GuestsCrmComponent implements OnInit {
   onSearchTermChange(value: string): void {
     this.searchTerm.set(value);
     this.currentPage.set(1);
+  }
+
+  onStatusFilterChange(value: string | number | null): void {
+    const status = value as CrmGuestStatus | 'all';
+    this.statusFilter.set(status);
+    this.currentPage.set(1);
+  }
+
+  toggleTag(tag: string): void {
+    const current = this.activeTags();
+    if (current.includes(tag)) {
+      this.activeTags.set(current.filter((t) => t !== tag));
+    } else {
+      this.activeTags.set([...current, tag]);
+    }
+    this.currentPage.set(1);
+  }
+
+  isTagActive(tag: string): boolean {
+    return this.activeTags().includes(tag);
   }
 
   formatPhone(phone: string): string {

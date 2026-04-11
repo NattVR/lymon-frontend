@@ -38,7 +38,33 @@
       [placeholder]="searchPlaceholder()"
       (valueChange)="onSearchTermChange(($event ?? '').toString())"
     ></app-input>
+
+    <app-select
+      class="status-filter-select"
+      id="crm-status-filter"
+      name="crm-status-filter"
+      size="medium"
+      placeholder=""
+      [options]="statusSelectOptions"
+      [value]="statusFilter()"
+      (valueChange)="onStatusFilterChange($event)"
+    ></app-select>
   </section>
+
+  @if (availableTags().length > 0) {
+    <div class="tags-filter-row">
+      @for (tag of availableTags(); track tag) {
+        <button
+          class="tag-chip"
+          [class.tag-chip--active]="isTagActive(tag)"
+          (click)="toggleTag(tag)"
+          type="button"
+        >
+          {{ tag }}
+        </button>
+      }
+    </div>
+  }
 
   @if (errorMessage()) {
     <div class="alert alert-error">{{ errorMessage() }}</div>
@@ -72,9 +98,14 @@
                 <span
                   class="status-pill"
                   [class.status-active]="guest.status === 'active'"
-                  [class.status-inactive]="guest.status === 'inactive'"
+                  [class.status-blocked]="guest.status === 'blocked'"
+                  [class.status-archived]="guest.status === 'archived'"
                 >
-                  {{ guest.status === 'active' ? 'Activo' : 'Inactivo' }}
+                  @switch (guest.status) {
+                    @case ('active') { Activo }
+                    @case ('blocked') { Bloqueado }
+                    @case ('archived') { Archivado }
+                  }
                 </span>
               </td>
               <td>
