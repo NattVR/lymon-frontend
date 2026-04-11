@@ -62,7 +62,17 @@ export class CrmMapper {
   }
 
   private static toGuestStatus(status: string): CrmGuestStatus {
-    return status.toLowerCase() === 'inactive' ? 'inactive' : 'active';
+    switch (status.toLowerCase()) {
+      case 'active':
+        return 'active';
+      case 'blocked':
+        return 'blocked';
+      case 'archived':
+      case 'inactive':
+        return 'archived';
+      default:
+        return 'archived';
+    }
   }
 
   private static toGuestNoteCategory(value: string): CrmGuestNoteCategory {

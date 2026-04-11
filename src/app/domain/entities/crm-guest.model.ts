@@ -1,4 +1,4 @@
-export type CrmGuestStatus = 'active' | 'inactive';
+export type CrmGuestStatus = 'active' | 'blocked' | 'archived';
 export type CrmGuestBookingStatus =
   | 'PENDING'
   | 'CONFIRMED'

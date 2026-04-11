@@ -20,9 +20,14 @@
       <span
         class="status-pill"
         [class.status-active]="guest.status === 'active'"
-        [class.status-inactive]="guest.status === 'inactive'"
+        [class.status-blocked]="guest.status === 'blocked'"
+        [class.status-archived]="guest.status === 'archived'"
       >
-        {{ guest.status === 'active' ? 'Activo' : 'Inactivo' }}
+        @switch (guest.status) {
+          @case ('active') { Activo }
+          @case ('blocked') { Bloqueado }
+          @case ('archived') { Archivado }
+        }
       </span>
 
       <div class="contact-item">
