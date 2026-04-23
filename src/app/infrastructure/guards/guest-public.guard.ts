@@ -6,5 +6,5 @@ export const guestPublicGuard: CanActivateFn = () => {
   const guestTokenService = inject(GuestTokenService);
   const router = inject(Router);
   if (!guestTokenService.isAuthenticated()) return true;
-  return router.createUrlTree(['/booking']);
+  return router.createUrlTree(['/lyhost/booking']);
 };

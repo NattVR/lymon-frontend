@@ -179,7 +179,7 @@ export class RoomDetailsComponent implements OnInit {
     if (!this.canReserve()) return;
 
     if (!this.guestTokenService.isAuthenticated()) {
-      this.router.navigate(['/guest/login'], {
+      this.router.navigate(['/lyhost/guest/login'], {
         queryParams: { returnUrl: `/room-details/${unit.id}` },
       });
       return;
@@ -198,17 +198,17 @@ export class RoomDetailsComponent implements OnInit {
       total: this.totalPrice(),
     };
 
-    this.router.navigate(['/guest/checkout'], { state });
+    this.router.navigate(['/lyhost/guest/checkout'], { state });
   }
 
   onSearch(): void {
     const v = this.searchForm.value;
-    this.router.navigate(['/booking'], {
+    this.router.navigate(['/lyhost/booking'], {
       queryParams: { checkIn: v.checkIn, checkOut: v.checkOut, guests: v.guests },
     });
   }
 
   onGoBack(): void {
-    this.router.navigate(['/booking']);
+    this.router.navigate(['/lyhost/booking']);
   }
 }

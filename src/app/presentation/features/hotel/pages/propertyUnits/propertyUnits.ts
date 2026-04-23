@@ -58,7 +58,7 @@ export class PropertyUnitsComponent implements OnInit {
   ngOnInit(): void {
     const pid = this.route.snapshot.queryParamMap.get('propertyId');
     if (!pid) {
-      this.router.navigate(['/properties']);
+      this.router.navigate(['/lyhost/properties']);
       return;
     }
     this.propertyId.set(pid);

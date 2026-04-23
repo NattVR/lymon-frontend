@@ -103,14 +103,14 @@ export class GuestCheckoutComponent implements OnInit {
   goBack(): void {
     const unitId = this.info()?.unitId;
     if (unitId) {
-      this.router.navigate(['/room-details', unitId]);
+      this.router.navigate(['/lyhost/room-details', unitId]);
     } else {
-      this.router.navigate(['/booking']);
+      this.router.navigate(['/lyhost/booking']);
     }
   }
 
   goToBooking(): void {
-    this.router.navigate(['/booking']);
+    this.router.navigate(['/lyhost/booking']);
   }
 
   formatDate(dateStr: string): string {

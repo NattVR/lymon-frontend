@@ -226,7 +226,7 @@ export class RegisterEmployeeComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.router.navigate(['/booking']);
+    this.router.navigate(['/lyhost/booking']);
   }
 
   onSubmit(): void {

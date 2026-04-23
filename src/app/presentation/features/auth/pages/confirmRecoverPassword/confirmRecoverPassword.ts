@@ -38,7 +38,7 @@ export class ConfirmRecoverPasswordComponent implements OnInit {
   ngOnInit(): void {
     const token = this.route.snapshot.queryParamMap.get('token');
     if (!token) {
-      this.router.navigate(['/recover-password']);
+      this.router.navigate(['/lyhost/recover-password']);
       return;
     }
     this.token.set(token);
@@ -64,7 +64,7 @@ export class ConfirmRecoverPasswordComponent implements OnInit {
       .subscribe({
         next: () => {
           this.isLoading.set(false);
-          this.router.navigate(['/login']);
+          this.router.navigate(['/lyhost/login']);
         },
         error: (err: HttpErrorResponse) => {
           this.isLoading.set(false);

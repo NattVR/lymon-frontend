@@ -74,7 +74,7 @@ export class GuestResetPasswordComponent implements OnInit {
         next: () => {
           this.isLoading.set(false);
           this.successMessage.set('Contraseña cambiada exitosamente. Ya puedes iniciar sesión.');
-          setTimeout(() => this.router.navigate(['/guest/login']), 2500);
+          setTimeout(() => this.router.navigate(['/lyhost/guest/login']), 2500);
         },
         error: (err: HttpErrorResponse) => {
           this.isLoading.set(false);

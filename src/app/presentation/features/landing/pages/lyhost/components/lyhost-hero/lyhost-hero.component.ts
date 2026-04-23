@@ -24,6 +24,6 @@ export class LyhostHeroComponent {
   ];
 
   goToBooking(): void {
-    this.router.navigate(['/booking']);
+    this.router.navigate(['/lyhost/booking']);
   }
 }

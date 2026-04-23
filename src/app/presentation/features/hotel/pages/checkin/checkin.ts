@@ -229,7 +229,7 @@ export class CheckinComponent implements AfterViewInit {
 
   private fetchReservation(reservationId: string | null): Observable<Reservation | null> {
     if (reservationId?.trim()) {
-      const isGuestRoute = this.router.url.startsWith('/guest/');
+      const isGuestRoute = this.router.url.startsWith('/lyhost/guest/');
 
       if (isGuestRoute) {
         return this.getGuestReservationByIdUseCase.execute(reservationId).pipe(

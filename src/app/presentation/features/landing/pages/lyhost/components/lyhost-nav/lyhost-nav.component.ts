@@ -40,11 +40,11 @@ export class LyhostNavComponent {
   }
 
   goToManagerLogin(): void {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/lyhost/login']);
   }
 
   goToGuestLogin(): void {
-    this.router.navigate(['/guest/login']);
+    this.router.navigate(['/lyhost/guest/login']);
   }
 
   navigateToSection(sectionId: string): void {

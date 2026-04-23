@@ -34,7 +34,7 @@ export const guestAuthInterceptor: HttpInterceptorFn = (req, next) => {
       switchMap((newToken) => next(withToken(req, newToken))),
       catchError(() => {
         guestTokenService.clear();
-        void router.navigateByUrl('/guest/login');
+        void router.navigateByUrl('/lyhost/guest/login');
         return throwError(() => new Error('Guest session expired'));
       }),
     );
@@ -50,7 +50,7 @@ export const guestAuthInterceptor: HttpInterceptorFn = (req, next) => {
         switchMap((newToken) => next(withToken(req, newToken))),
         catchError(() => {
           guestTokenService.clear();
-          void router.navigateByUrl('/guest/login');
+          void router.navigateByUrl('/lyhost/guest/login');
           return throwError(() => error);
         }),
       );

@@ -112,18 +112,18 @@ export class SidebarComponent implements OnInit {
   });
 
   readonly menuItems: MenuItem[] = [
-    { icon: 'bootstrapGrid', label: 'Inicio', route: '/dashboard' },
-    { icon: 'bootstrapArchive', label: 'Inventario', route: '/inventory' },
-    { icon: 'bootstrapHouseDoor', label: 'Propiedades y Unidades', route: '/properties' },
-    { icon: 'bootstrapPersonAdd', label: 'Registrar Empleado', route: '/register-employee' },
-    { icon: 'bootstrapPeople', label: 'Gesti\u00f3n de Empleados', route: '/employee-management' },
-    { icon: 'bootstrapClockHistory', label: 'Turnos', route: '/staffShift'},
-    { icon: 'bootstrapCurrencyDollar', label: 'Resumen de Ventas', route: '/sales-summary' },
-    { icon: 'bootstrapCalendar', label: 'Sincronizar Calendarios', route: '/calendar-sync' },
-    { icon: 'bootstrapEnvelopeAt', label: 'Configuración de Correos', route: '/email-config' },
-    { icon: 'bootstrapInfoCircle', label: 'Registros de Auditoría', route: '/audit-log' },
-    { icon: 'bootstrapPeople', label: 'CRM de Huéspedes', route: '/crm/guests' },
-    { icon: 'bootstrapBarChartFill', label: 'Novedades Laborales', route: '/incident-report/list' },
+    { icon: 'bootstrapGrid', label: 'Inicio', route: '/lyhost/dashboard' },
+    { icon: 'bootstrapArchive', label: 'Inventario', route: '/lyhost/inventory' },
+    { icon: 'bootstrapHouseDoor', label: 'Propiedades y Unidades', route: '/lyhost/properties' },
+    { icon: 'bootstrapPersonAdd', label: 'Registrar Empleado', route: '/lyhost/register-employee' },
+    { icon: 'bootstrapPeople', label: 'Gesti\u00f3n de Empleados', route: '/lyhost/employee-management' },
+    { icon: 'bootstrapClockHistory', label: 'Turnos', route: '/lyhost/staff-shift'},
+    { icon: 'bootstrapCurrencyDollar', label: 'Resumen de Ventas', route: '/lyhost/sales-summary' },
+    { icon: 'bootstrapCalendar', label: 'Sincronizar Calendarios', route: '/lyhost/calendar-sync' },
+    { icon: 'bootstrapEnvelopeAt', label: 'Configuración de Correos', route: '/lyhost/email-config' },
+    { icon: 'bootstrapInfoCircle', label: 'Registros de Auditoría', route: '/lyhost/audit-log' },
+    { icon: 'bootstrapPeople', label: 'CRM de Huéspedes', route: '/lyhost/crm/guests' },
+    { icon: 'bootstrapBarChartFill', label: 'Novedades Laborales', route: '/lyhost/incident-report/list' },
   ];
 
   toggleExpanded(): void {
@@ -142,17 +142,17 @@ export class SidebarComponent implements OnInit {
 
   goToSettings(): void {
     this.closeProfileMenu();
-    void this.router.navigateByUrl('/settings');
+    void this.router.navigateByUrl('/lyhost/settings');
   }
 
   goToPlans(): void {
     this.closeProfileMenu();
-    void this.router.navigateByUrl('/plans');
+    void this.router.navigateByUrl('/lyhost/plans');
   }
 
   goToSessions(): void {
     this.closeProfileMenu();
-    void this.router.navigateByUrl('/sessions');
+    void this.router.navigateByUrl('/lyhost/sessions');
   }
 
   openLogoutConfirm(): void {
@@ -169,7 +169,7 @@ export class SidebarComponent implements OnInit {
     this.closeProfileMenu();
     this.tokenService.clear();
     this.userSession.clear();
-    void this.router.navigateByUrl('/login', { replaceUrl: true });
+    void this.router.navigateByUrl('/lyhost/login', { replaceUrl: true });
   }
 
   onEscapeKey(): void {

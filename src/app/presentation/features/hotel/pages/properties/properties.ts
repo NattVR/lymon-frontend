@@ -114,7 +114,7 @@ export class PropertiesComponent implements OnInit {
   }
 
   navigateToUnits(propertyId: string): void {
-    this.router.navigate(['/property-units'], { queryParams: { propertyId } });
+    this.router.navigate(['/lyhost/property-units'], { queryParams: { propertyId } });
   }
 
   onSubmit(): void {

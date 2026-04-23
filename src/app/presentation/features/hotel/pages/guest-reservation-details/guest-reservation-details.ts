@@ -126,11 +126,11 @@ export class GuestReservationDetailsComponent {
 
   onLogout(): void {
     this.guestTokenService.clear();
-    void this.router.navigate(['/guest/login']);
+    void this.router.navigate(['/lyhost/guest/login']);
   }
 
   goExplore(): void {
-    void this.router.navigate(['/booking']);
+    void this.router.navigate(['/lyhost/booking']);
   }
 
   goToCheckin(): void {
@@ -139,11 +139,11 @@ export class GuestReservationDetailsComponent {
       return;
     }
 
-    void this.router.navigate(['/guest/checkin'], { queryParams: { reservationId } });
+    void this.router.navigate(['/lyhost/guest/checkin'], { queryParams: { reservationId } });
   }
 
   goBackToReservations(): void {
-    void this.router.navigate(['/guest/reservations']);
+    void this.router.navigate(['/lyhost/guest/reservations']);
   }
 
   statusLabel(): string {

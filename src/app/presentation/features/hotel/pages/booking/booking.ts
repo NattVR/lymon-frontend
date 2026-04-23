@@ -128,11 +128,11 @@ export class BookingComponent implements OnInit {
   readonly guestEmail = this.guestTokenService.getGuestEmail();
 
   onGuestLogin(): void {
-    this.router.navigate(['/guest/login']);
+    this.router.navigate(['/lyhost/guest/login']);
   }
 
   onMyReservations(): void {
-    this.router.navigate(['/guest/reservations']);
+    this.router.navigate(['/lyhost/guest/reservations']);
   }
 
   onGuestLogout(): void {
@@ -140,7 +140,7 @@ export class BookingComponent implements OnInit {
   }
 
   goToRoomDetails(unitId: string): void {
-    this.router.navigate(['/room-details', unitId]);
+    this.router.navigate(['/lyhost/room-details', unitId]);
   }
 
   private toRoomCard(unit: Unit): BookingRoomCard {
